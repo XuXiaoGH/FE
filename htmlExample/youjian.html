@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body,ul{
+			margin:0;
+			padding:0;
+		}
+		#mydiv{
+			visibility:hidden;
+			position:absolute;
+			border:1px solid gray;
+			border-bottom:0px;
+			text-indent:1em;
+		}
+		.menu{
+			list-style:none;
+		}
+		.menu a{
+			display:block;
+			width:100px;
+			height:20px;
+			border-bottom:1px solid gray;
+			text-decoration:none;
+			line-height:20px;
+			color:black;
+		}
+		.menu a:hover{
+			background:#eee;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="mydiv">
+		<ul class="menu">
+			<li><a href="#">menu 1</a></li>
+			<li><a href="#">menu 2</a></li>
+			<li><a href="#">menu 3</a></li>
+			<li><a href="#">menu 4</a></li>
+			<li><a href="#">menu 5</a></li>
+		</ul>
+	</div>
+	
+	<script type="text/javascript">
+		var mydiv = document.getElementById("mydiv");
+		//响应鼠标点击右键，菜单栏显示，重设div的left 和 top
+		document.oncontextmenu = function(event){
+			mydiv.style.visibility = "visible";
+			mydiv.style.left = event.clientX + "px";
+			mydiv.style.top = event.clientY + "px";
+			return false;
+		}
+		//响应鼠标点击左键，菜单栏消失
+		document.onmousedown = function(event){
+			mydiv.style.visibility = "hidden";
+		}
+	</script>
+</body>
+</html>

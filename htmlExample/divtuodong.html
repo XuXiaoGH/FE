@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#mydiv{
+			height: 100px;
+			width: 100px;
+			background-color: black;
+			line-height: 100px;
+			text-align: center;
+			color:white;
+			cursor:move;
+			position: absolute;
+			font-family:"Microsoft Yahei";
+		}
+	</style>
+</head>
+<body>
+	<div id="mydiv">
+		跟着鼠标走
+	</div>
+
+	<script type="text/javascript">
+		var mydiv = document.getElementById("mydiv");
+		var isMoving = false;
+		var diffx = 0;
+		var diffy = 0;
+		var handler = function(event){
+			switch(event.type){
+				case "mousedown": //点下鼠标
+					isMoving = true;  //标识开始移动
+					diffx = event.clientX - event.target.offsetLeft; //算出鼠标点击处离div左边框的直线距离
+					diffy = event.clientY - event.target.offsetTop;  //算出鼠标点击处离div上边框的直线距离
+					break;
+				case "mousemove":  //移动鼠标
+					if(isMoving){
+						mydiv.style.left = (event.clientX - diffx) + "px";
+						mydiv.style.top = (event.clientY - diffy) + "px";
+					}
+					break;
+				case "mouseup":  //松开鼠标
+					isMoving = false; //设置为false，则mousemove方法内部拖动则不执行
+					break;
+			}
+		}
+		mydiv.addEventListener("mousedown", handler, false);
+		mydiv.addEventListener("mousemove", handler, false);
+		mydiv.addEventListener("mouseup", handler, false);
+
+	</script>
+</body>
+</html>
